@@ -2,7 +2,6 @@ const vkapi = new (require('node-vkapi'))();
 const https = require('https');
 const fs = require('fs');
 
-const config = require('./config.js');
 
 let uploaded = 0;
 let all = 0;
@@ -54,7 +53,36 @@ function getUserPhoto(options) {
         .catch(callPolice);
 }
 
+function drawConsole() {
+    var lineReader = require('readline').createInterface({
+        input: fs.createReadStream('README.md')
+    });
+
+    lineReader.on('line', function (line) {
+        console.log(line);
+    }); 
+
+}
+
+function parseConsole() {
+    console.log(process.argv);
+}
+
 function main() {
+    let config;
+
+    try {
+     config = require('./config.js');
+    } catch (e) {
+        if (e.code === 'MODULE_NOT_FOUND') {
+            drawConsole();
+        } else {
+            console.log('error', e);
+        }
+        return;
+    }
+
+    parseConsole();
     //логинимся пользователем
     try {
         vkapi.authorize(config.credentials);
