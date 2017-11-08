@@ -1,0 +1,14 @@
+{
+  "name": "vkdow",
+  "version": "1.0.0",
+  "description": "vk download album",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vstebunov",
+  "license": "ISC",
+  "dependencies": {
+    "node-vkapi": "^3.0.4"
+  }
+}
